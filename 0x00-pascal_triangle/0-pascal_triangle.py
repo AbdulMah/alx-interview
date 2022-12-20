@@ -4,7 +4,7 @@
 """
 
 
-def pascal_triangle):
+def pascal_triangle(n):
     """
         returns a lis of lists of integers
         Args:
@@ -16,7 +16,7 @@ def pascal_triangle):
     mylst = []
 
     if n <= 0:
-        return pTri
+        return mylst
 
     for i in range(n):
         mylst.append(t_row)
