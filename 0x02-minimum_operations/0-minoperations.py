@@ -3,6 +3,12 @@
 
 
 def minOperations(n):
+    """minOperations
+    Gets fewest of operations needed 
+
+    Args:
+        n (int): number
+    """
     num_ops, min_ops = 0, 2
     while n > 1:
         while n % min_ops == 0:
