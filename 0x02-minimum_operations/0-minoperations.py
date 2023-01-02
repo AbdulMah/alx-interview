@@ -3,15 +3,6 @@
 
 
 def minOperations(n):
-    """minOperations
-    Gets fewest of operations needed 
-    to result in exactly n H characters
-
-    Args:
-        n (int): number
-    Returns:
-        int: num_ops
-    """
     num_ops, min_ops = 0, 2
     while n > 1:
         while n % min_ops == 0:
