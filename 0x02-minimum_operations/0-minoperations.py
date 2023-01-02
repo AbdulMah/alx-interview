@@ -12,7 +12,11 @@ def minOperations(n):
     Returns:
         An integer
     """    
-    
+    """_summary_
+
+    Returns:
+        int: nu-m_ops
+    """    
     num_ops, min_ops = 0, 2
     while n > 1:
         while n % min_ops == 0:

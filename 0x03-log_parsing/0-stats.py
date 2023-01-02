@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-def print_msg(status_code: dict, file_size: int) -> None:
+def print_msg(status_code, file_size):
     """
     Method to print
     Args:
