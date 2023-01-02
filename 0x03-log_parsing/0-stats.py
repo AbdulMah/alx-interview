@@ -1,6 +1,14 @@
 #!/usr/bin/python3
 
 
+import re
+import sys
+counter = 0
+file_size = 0
+status_code= {200: 0, 301: 0, 400: 0,
+                   401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+
+
 def print_msg(status_code, file_size):
     """Method to print
     """
@@ -11,43 +19,24 @@ def print_msg(status_code, file_size):
             print("{}: {}".format(key, val))
 
 
-def main():
-    """Main 
-    """
-    import sys
-    file_size = 0
-    counter = 0
-    status_code = {"200": 0,
-                   "301": 0,
-                   "400": 0,
-                   "401": 0,
-                   "403": 0,
-                   "404": 0,
-                   "405": 0,
-                   "500": 0}
-
+if __name__ == "__main__":
     try:
         for line in sys.stdin:
-            parsed_line = line.split()  # ✄ trimming
-            parsed_line = parsed_line[::-1]  # inverting
-
-            if len(parsed_line) > 2:
-                counter += 1
-
-                if counter <= 10:
-                    file_size += int(parsed_line[0])  # file size
-                    code = parsed_line[1]  # status code
-
-                    if code in status_code.keys():
-                        status_code[code] += 1
-
-                if counter == 10:
-                    print_msg(status_code, file_size)
-                    counter = 0
-
-    finally:
+            split_string = re.split('- |"|"| " " ', str(line))
+            status_and_file_s = split_string[-1]
+            if counter != 0 and counter % 10 == 0:
+                print_msg(status_code, file_size)
+            counter = counter + 1
+            try:
+                statusC = int(status_and_file_s.split()[0])
+                f_size = int(status_and_file_s.split()[1])
+                # print("Status Code {} size {}".format(statusC, f_size))
+                if statusC in status_code:
+                    status_code[statusC] += 1
+                file_size = file_size + f_size
+            except:
+                pass
         print_msg(status_code, file_size)
-
-
-if __name__ == "__main__":
-    main()
+    except KeyboardInterrupt:
+        print_msg(status_code, file_size)
+        raise
