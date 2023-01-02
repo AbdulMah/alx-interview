@@ -33,14 +33,7 @@ def isWinner(x, nums):
 
 
 def sum_operation(ls, x):
-    """sum operations
-
-    Args:
-        ls (list): list
-        x (list): list
-    Returns: 
-        bool: True or False
-    """
+    """sum operations"""
     for i in x:
         if sum(ls[0:i + 1]) % 2 == 0:
             return True
@@ -49,11 +42,7 @@ def sum_operation(ls, x):
 
 
 def rm_multiples(ls, x):
-    """removes multiple
-        of primes
-    Args:
-        ls (list): list
-        x (int): value
+    """removes multiple of primes
     """
     for i in range(2, len(ls)):
         try:

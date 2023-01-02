@@ -2,13 +2,7 @@
 
 
 def print_msg(status_code, file_size):
-    """
-    Method to print
-    Args:
-        status_code: dict of status codes
-        file_size: total of the file
-    Returns:
-        None
+    """Method to print
     """
 
     print("File size: {}".format(file_size))

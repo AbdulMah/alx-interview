@@ -1,20 +1,25 @@
 #!/usr/bin/node
 
 const request = require('request');
+const endpoint = 'https://swapi-api.alx-tools.com/api';
+const id = process.argv[2];
 
-const req = request('https://swapi-api.alx-tools.com/api/films/' + process.argv[2], (err, res, body) => {
-  if (err) throw err;
-  
-  const actors = JSON.parse(body).characters;
-  exactOrder(actors, 0);
+request(`${endpoint}/films/${id}/`, async function (error, response, body) {
+  if (error) return console.log(error);
+
+  let characters = JSON.parse(body).characters;
+
+  for (const character of characters) {
+    await new Promise((resolve, reject) => {
+      request(character, (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          console.log(JSON.parse(body).name);
+          resolve(body);
+        }
+      });
+    });
+  }
 });
 
-const exactOrder = (actors, x) => {
-  if (x === actors.length) return;
-  req(actors[x], function (err, res, body) {
-    if (err) throw err;
-
-    console.log(JSON.parse(body).name);
-    exactOrder(actors, x + 1);
-  });
-};
