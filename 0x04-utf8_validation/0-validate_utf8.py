@@ -7,9 +7,8 @@ def validUTF8(data):
     Method that determines if a given data set represents a valid
     UTF-8 encoding.
     Returns:
-        boolean: False or True
+        bool: False or True
     """
-      
     number_bytes = 0
 
     mask_1 = 1 << 7
