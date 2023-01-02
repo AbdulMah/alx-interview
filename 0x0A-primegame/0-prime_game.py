@@ -43,9 +43,10 @@ def sum_operation(ls, x):
     """sum operations
 
     Args:
-        ls (list): _description_
-        x (list): _description_
-    Returns: True or False
+        ls (list): list
+        x (list): list
+    Returns: 
+        bool: True or False
     """
     for i in x:
         if sum(ls[0:i + 1]) % 2 == 0:
@@ -58,9 +59,8 @@ def rm_multiples(ls, x):
     """removes multiple
         of primes
     Args:
-        ls (list): _description_
-        x (int): _description_
-    Returns: None
+        ls (list): list
+        x (int): value
     """
     for i in range(2, len(ls)):
         try:
