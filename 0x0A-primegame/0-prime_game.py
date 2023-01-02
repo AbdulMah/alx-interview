@@ -4,13 +4,6 @@
 
 def isWinner(x, nums):
     """ Maria and Ben are playing a game
-
-    Args:
-        x (int): number of arround
-        nums (array(list)): array of n
-
-    Returns:
-        None|str: see project condition
     """
 
     ben = 0
