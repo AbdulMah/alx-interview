@@ -11,6 +11,6 @@ def canUnlockAll(boxes):
             control = (key in boxes[i] and key != i)
             if control:
                 break
-        if control == False:
+        if control is False:
             return control
     return True
