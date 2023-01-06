@@ -4,12 +4,15 @@ each box may contain keys """
 
 
 def canUnlockAll(boxes):
-    for key in range(1, len(boxes) - 1):
-        default = False
-        for idx in range(len(boxes)):
-            default = (key in boxes[idx] and key != idx)
-            if default:
-                break
-        if default == False:
-            return default
-    return True
+    """ solve the problem of
+    loockboxes """
+    unlocked = set()
+    for key, val in enumerate(boxes):
+        if len(val) or val == 0:
+            unlocked.add(key)
+        for i in val:
+            if i < len(boxes) and i != key:
+                unlocked.add(key)
+        if len(unlocked) == len(boxes):
+            return True
+    return False
