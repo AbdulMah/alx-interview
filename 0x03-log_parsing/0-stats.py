@@ -35,7 +35,7 @@ if __name__ == "__main__":
                 size_summation += int(codes[1])
                 if print_counter % 10 == 0:
                     print_logs()
-            except():
+            except ():
                 pass
         print_logs()
     except KeyboardInterrupt:
