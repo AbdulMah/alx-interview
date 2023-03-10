@@ -3,49 +3,25 @@
 
 
 def isWinner(x, nums):
-    """ Maria and Ben are playing a game
+    """Determines the winner of a prime game session with `x` rounds.
     """
-
-    ben = 0
-    maria = 0
-
-    if x <= 0 or nums is None:
+    if x < 1 or not nums:
         return None
-    if x != len(nums):
+    marias_wins, bens_wins = 0, 0
+    # generate primes with a limit of the maximum number in nums
+    n = max(nums)
+    primes = [True for _ in range(1, n + 1, 1)]
+    primes[0] = False
+    for i, is_prime in enumerate(primes, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, n + 1, i):
+            primes[j - 1] = False
+    # filter the number of primes less than n in nums for each round
+    for _, n in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+        bens_wins += primes_count % 2 == 0
+        marias_wins += primes_count % 2 == 1
+    if marias_wins == bens_wins:
         return None
-
-    myList = [1 for x in range(sorted(nums)[-1] + 1)]
-    myList[0], myList[1] = 0, 0
-
-    for i in range(2, len(myList)):
-        rm_multiples(myList, i)
-
-    if sum_operation(myList, nums):
-        ben += 1
-    else:
-        maria += 1
-
-    if ben > maria:
-        return "Ben"
-    elif ben < maria:
-        return "Maria"
-    return None
-
-
-def sum_operation(ls, x):
-    """sum operations"""
-    for i in x:
-        if sum(ls[0:i + 1]) % 2 == 0:
-            return True
-        else:
-            return False
-
-
-def rm_multiples(ls, x):
-    """removes multiple of primes
-    """
-    for i in range(2, len(ls)):
-        try:
-            ls[i * x] = 0
-        except (ValueError, IndexError):
-            break
+    return 'Maria' if marias_wins > bens_wins else 'Ben'
