@@ -3,12 +3,13 @@
 
 
 def isWinner(x, nums):
-    """Determines the winner of a prime game session with `x` rounds.
+    """Determines the winner of a 
+    prime game session with x rounds.
     """
     if x < 1 or not nums:
         return None
     marias_wins, bens_wins = 0, 0
-    # generate primes with a limit of the maximum number in nums
+    
     n = max(nums)
     primes = [True for _ in range(1, n + 1, 1)]
     primes[0] = False
